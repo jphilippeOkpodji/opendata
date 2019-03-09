@@ -1,0 +1,38 @@
+
+mappings:
+  person:
+    source: dataset-source
+    subject: http://www.example.org/Person/$(name)
+    predicateobjects:
+    - [a, 'http://schema.org/Person']
+    - ['http://xmlns.com/foaf/spec/name', $(name)]
+
+  chambre:
+    source: dataset-source
+    subject: http://www.example.org/Chambre/$(rep_sen)
+    predicateobjects:
+    - [a, 'http://schema.org/Chambre']
+    - ['www.example.org/Chambre/hasParty', party]
+
+  party:
+    source: dataset-source
+    subject: http://www.example.org/Party/$(party)
+    predicateobjects:
+    - [a, 'http://schema.org/Party']
+    - ['http://dbpedia.org/ontology/party', $(party)]
+
+  geoEtat:
+    source: dataset-source
+    subject: http://www.example.org/GeoEtat/$(state_label)
+    predicateobjects:
+    - [a, 'http://schema.org/GeoEtat']
+    - ['https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat', district]
+
+  district:
+    source: dataset-source
+    subject: http://www.example.org/GeoEtat/$(district)
+    predicateobjects:
+    - [a, 'http://schema.org/District']
+    - ['https://catalog.data.gov/dataset/congressional-districts-59fd5', $(district)]
+sources:
+  dataset-source: [data.json~jsonpath, '$.records.[*].fields']
