@@ -1,4 +1,3 @@
-
 mappings:
   person:
     source: dataset-source
@@ -6,27 +5,47 @@ mappings:
     predicateobjects:
     - [a, 'http://schema.org/Person']
     - ['http://xmlns.com/foaf/spec/name', $(name)]
+    - p: 'www.example.org/Person/etat'
+      o:
+        mapping: geoEtat
 
   chambre:
     source: dataset-source
     subject: http://www.example.org/Chambre/$(rep_sen)
     predicateobjects:
     - [a, 'http://schema.org/Chambre']
-    - ['www.example.org/Chambre/hasParty', party]
+    - p: 'www.example.org/Chambre/hasParty'
+      o:
+        mapping: party
 
+    - p: 'www.example.org/Chambre/geoetat'
+      o:
+        mapping: geoEtat
+    
+    
   party:
     source: dataset-source
     subject: http://www.example.org/Party/$(party)
     predicateobjects:
     - [a, 'http://schema.org/Party']
     - ['http://dbpedia.org/ontology/party', $(party)]
+    - p: 'www.example.org/Party/etat'
+      o:
+        mapping: geoEtat
 
   geoEtat:
     source: dataset-source
     subject: http://www.example.org/GeoEtat/$(state_label)
     predicateobjects:
     - [a, 'http://schema.org/GeoEtat']
-    - ['https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat', district]
+    - p: 'https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat'
+      o:
+        mapping: district
+    #- ['https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat', district]
+    - ['http://schema.org/name', $(state_label)]
+    - p: 'www.example.org/geoEtat/party'
+      o:
+        mapping: party
 
   district:
     source: dataset-source
