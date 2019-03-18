@@ -9,13 +9,14 @@ where{
 }
 
 
-#Le parti représentant de l’état du Minnesota 
+#Le parti représentant de l’état du Minnesota 
 select ?party 
 where 
 {
-	?p <http://www.example.org/Party> ?party.
-	?p <www.example.org/Party/etat> ?x.
-	?x <http://www.example.org/GeoEtat> "Minnesota".
+
+    ?p <http://dbpedia.org/ontology/party> ?party.
+    ?p <www.example.org/Party/etat> ?x.
+    ?x <http://schema.org/name> "Minnesota".
 }
 
 #L’image du représentant des Virgin Islands (non car nous ne gérons pas d'image ici)
@@ -23,18 +24,18 @@ where
 select ?etat 
 where 
 {
-	?p <http://www.example.org/GeoEtat> ?etat.
-	?p <www.example.org/geoEtat/party> ?x.
-	?x <http://www.example.org/Party> "Republican".
+    ?p <https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat> ?etat.
+    ?p <www.example.org/geoEtat/party> ?x.
+    ?x <http://dbpedia.org/ontology/party> "Republican".
 }
 
 #La chambre à laquelle appartient les représentants de l’état de American Samoa(cette état n'existe pas, je change par alabama)
 select ?chambre 
 where
 {
-	?ch <http://www.example.org/Chambre>?chambre.
-	?x  <www.example.org/Chambre/hasParty>?p.
-	?p  <www.example.org/Chambre/geoetat>"Alabama".
+    ?ch <http://www.example.org/Chambre>?chambre.
+    ?ch <www.example.org/Chambre/geoetat>?p.
+    ?p  <https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat> "Alabama".
 }
 
 #Les noms des représentants de l’état de l’Alaska(nexiste pas, j'ai remplacer par nevada) triés par ordre alphabétique
@@ -42,8 +43,9 @@ where
 select ?name
 where
 {
-	?x <http://xmlns.com/foaf/spec/name> ?name.
-	?p <www.example.org/Person/etat> ?x.
-	?x <http://schema.org/name> "Nevada".
-	ORDER BY ?name
+    ?x <http://xmlns.com/foaf/spec/name> ?name.
+    ?x <www.example.org/Person/etat>?p.
+    ?p <https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat> "Nevada".
+    
 }
+ORDER BY ?name

@@ -14,6 +14,7 @@ mappings:
     subject: http://www.example.org/Chambre/$(rep_sen)
     predicateobjects:
     - [a, 'http://schema.org/Chambre']
+    - ['http://www.example.org/Chambre', $(rep_sen)]
     - p: 'www.example.org/Chambre/hasParty'
       o:
         mapping: party
@@ -38,7 +39,8 @@ mappings:
     subject: http://www.example.org/GeoEtat/$(state_label)
     predicateobjects:
     - [a, 'http://schema.org/GeoEtat']
-    - p: 'https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat'
+    - ['https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat', $(state_label)]
+    - p: 'www.example.org/geoEtat/district'
       o:
         mapping: district
     #- ['https://www.sport-histoire.fr/Geographie/Liste_des_etats_des_etats_unis.php/etat', district]
