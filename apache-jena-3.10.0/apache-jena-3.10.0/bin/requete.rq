@@ -1,0 +1,8 @@
+#Les représentants de l’état de New York
+select ?name
+where 
+{
+	?x foaf:name ?name;
+	
+
+}
